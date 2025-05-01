@@ -80,13 +80,11 @@
                  <button id="reset-progress-button" class="pixel-button danger">Reset Current Character</button>
             </section>
         </main>
-    </div> <div id="level-up-notification" class="hidden">
-        <p>LEVEL UP!</p>
-    </div>
+    </div> <div id="level-up-notification" class="hidden"> <p>LEVEL UP!</p> </div>
 
     <div id="reset-confirm-modal" class="modal hidden">
         <div class="modal-content">
-            <p>Are you sure you want to reset progress for the current character? This cannot be undone!</p>
+            <p>Reset progress for the current character?</p>
             <div class="modal-buttons">
                 <button id="confirm-reset-button" class="pixel-button danger">Yes, Reset!</button>
                 <button id="cancel-reset-button" class="pixel-button">Cancel</button>
@@ -94,9 +92,8 @@
         </div>
     </div>
 
-    <div id="delete-confirm-modal" class="modal hidden">
-        <div class="modal-content">
-            <p>Are you sure you want to delete the selected character? This cannot be undone!</p>
+    <div id="delete-confirm-modal" class="modal hidden"> <div class="modal-content">
+            <p>Delete the selected character?</p>
             <div class="modal-buttons">
                 <button id="confirm-delete-button" class="pixel-button danger">Yes, Delete!</button>
                 <button id="cancel-delete-button" class="pixel-button">Cancel</button>
@@ -104,9 +101,17 @@
         </div>
     </div>
 
-     <div id="new-journey-notification" class="hidden">
-        <p>Your journey begins anew... Level 1! 🧙‍♂️</p>
+    <div id="delete-quest-confirm-modal" class="modal hidden">
+        <div class="modal-content">
+            <p>Delete this quest? This cannot be undone!</p>
+            <div class="modal-buttons">
+                <button id="confirm-delete-quest-button" class="pixel-button danger">Yes, Delete Quest!</button>
+                <button id="cancel-delete-quest-button" class="pixel-button">Cancel</button>
+            </div>
+        </div>
     </div>
+
+     <div id="new-journey-notification" class="hidden"> <p>Your journey begins anew... Level 1! 🧙‍♂️</p> </div>
 
     <script src="script.js"></script>
 </body>
