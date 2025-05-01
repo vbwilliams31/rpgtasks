@@ -2,509 +2,146 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* Basic Reset & Global Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Press Start 2P', cursive; /* Apply pixel font */
-    background-color: #1a1a2e; /* Dark Navy/Purple background */
-    color: #e0e0ff; /* Light pastel text color */
-    line-height: 1.6; /* Improve readability */
-    padding: 20px; /* Add some space around the content */
+    font-family: 'Press Start 2P', cursive;
+    background-color: #1a1a2e;
+    color: #e0e0ff;
+    line-height: 1.6;
+    padding: 20px;
 }
 
-/* Utility class to hide elements visually but keep them in DOM */
-.hidden {
-    display: none !important; /* Use important to ensure override */
-}
+/* Utility class */
+.hidden { display: none !important; }
 
+/* Headings */
+h1, h2 { color: #f0a500; margin-bottom: 15px; text-align: center; }
+h1 { font-size: 1.8rem; margin-bottom: 25px; text-shadow: 3px 3px 0px #0f0f1a; position: relative; padding-top: 40px; }
+h2 { font-size: 1.2rem; border-bottom: 2px solid #4a4a6a; padding-bottom: 5px; margin-top: 30px; }
 
-/* Headings Styling */
-h1, h2 {
-    color: #f0a500; /* Soft Yellow/Gold for headings */
-    margin-bottom: 15px;
-    text-align: center;
-}
+/* Character View */
+#character-view {}
+#character-manager { background-color: #2a2a4e; padding: 25px; border: 3px solid #4a4a6a; box-shadow: 5px 5px 0px #0f0f1a; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+#character-manager h2 { margin-top: 0; margin-bottom: 20px; font-size: 1.1rem; }
+.character-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 15px; justify-content: center; }
+.character-controls .form-group { margin-bottom: 0; flex-grow: 1; }
+.character-controls label { font-size: 0.8rem; }
+.character-controls select, .character-controls input[type="text"] { width: 100%; min-width: 150px; }
 
-h1 {
-    font-size: 1.8rem; /* Larger size for main title */
-    margin-bottom: 25px;
-    text-shadow: 3px 3px 0px #0f0f1a; /* Simple pixelated shadow */
-    position: relative; /* Needed for absolute positioning of back button */
-    padding-top: 40px; /* Add padding to prevent overlap with back button */
-}
+/* Tracker View */
+#tracker-view { max-width: 700px; margin: 0 auto; }
+#tracker-view header { text-align: center; margin-bottom: 30px; position: relative; }
 
-h2 {
-    font-size: 1.2rem; /* Slightly smaller for section titles */
-    border-bottom: 2px solid #4a4a6a; /* Pixelated underline */
-    padding-bottom: 5px;
-    margin-top: 30px; /* Space above sections */
-}
-
-/* Character Management Section / View */
-#character-view {
-    /* This view is shown by default */
-}
-
-#character-manager {
-    background-color: #2a2a4e; /* Match main panel background */
-    padding: 25px;
-    border: 3px solid #4a4a6a;
-    box-shadow: 5px 5px 0px #0f0f1a;
-    margin-bottom: 30px; /* Space below character section */
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#character-manager h2 {
-    margin-top: 0; /* Remove extra top margin */
-    margin-bottom: 20px;
-    font-size: 1.1rem; /* Slightly smaller heading */
-}
-
-.character-controls {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    align-items: flex-end; /* Align items to bottom */
-    gap: 15px; /* Space between controls */
-    justify-content: center; /* Center controls */
-}
-
-.character-controls .form-group {
-    margin-bottom: 0; /* Remove bottom margin from form groups here */
-    flex-grow: 1; /* Allow input/select to grow */
-}
-.character-controls label {
-    font-size: 0.8rem; /* Smaller label */
-}
-.character-controls select,
-.character-controls input[type="text"] {
-    width: 100%; /* Make input/select fill available space */
-    min-width: 150px; /* Minimum width */
-}
-
-/* Smaller button variant */
-.pixel-button.small {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    margin-top: 0; /* Reset margin */
-    align-self: flex-end; /* Align with bottom of inputs */
-}
-
-/* Tracker View Specific Styles */
-#tracker-view {
-     /* Starts hidden via .hidden class in HTML */
-     max-width: 700px; /* Consistent width */
-     margin: 0 auto; /* Center */
-}
-
-/* Header Area Styling within Tracker View */
-#tracker-view header {
-    text-align: center;
-    margin-bottom: 30px;
-    position: relative; /* Context for back button */
-}
-
-/* Back Button Styling - UPDATED */
-.back-button {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    margin-top: 0;
-    background-color: #6c757d; /* Greyish color */
-    color: #fff;
-    box-shadow: 3px 3px 0px #4a4a6a;
-    z-index: 10; /* Explicitly set z-index */
-    pointer-events: auto !important; /* Ensure pointer events are enabled */
-    cursor: pointer !important; /* Ensure cursor indicates clickability */
-}
-.back-button:hover {
-    background-color: #5a6268;
-    box-shadow: 1px 1px 0px #4a4a6a;
-    transform: translate(2px, 2px);
-}
-.back-button:active {
-    box-shadow: none;
-    transform: translate(3px, 3px);
-}
-
+/* Back Button */
+.back-button { position: absolute; top: 5px; left: 5px; margin-top: 0; background-color: #6c757d; color: #fff; box-shadow: 3px 3px 0px #4a4a6a; z-index: 10; pointer-events: auto !important; cursor: pointer !important; }
+.back-button:hover { background-color: #5a6268; box-shadow: 1px 1px 0px #4a4a6a; transform: translate(2px, 2px); }
+.back-button:active { box-shadow: none; transform: translate(3px, 3px); }
 
 /* Level & XP Area */
-.level-xp-area {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column; /* Stack level, bar, text vertically */
-    align-items: center; /* Center items horizontally */
-    gap: 8px; /* Space between items */
-}
+.level-xp-area { margin-top: 15px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#level-display { font-size: 1.1rem; color: #90ee90; }
+#xp-bar-container { width: 80%; max-width: 400px; height: 25px; background-color: #0f0f1a; border: 2px solid #4a4a6a; overflow: hidden; image-rendering: pixelated; }
+#xp-bar { height: 100%; width: 0%; background-color: #32cd32; transition: width 0.5s ease-in-out; image-rendering: pixelated; }
+#xp-text { font-size: 0.8rem; color: #add8e6; }
 
-#level-display {
-    font-size: 1.1rem;
-    color: #90ee90; /* Light Green for level */
-}
+/* Main Content */
+#tracker-view main { background-color: #2a2a4e; padding: 25px; border: 3px solid #4a4a6a; box-shadow: 5px 5px 0px #0f0f1a; }
+section:not(#character-manager) { margin-bottom: 30px; }
 
-#xp-bar-container {
-    width: 80%; /* Responsive width */
-    max-width: 400px; /* Max width for larger screens */
-    height: 25px; /* Fixed height for the bar */
-    background-color: #0f0f1a; /* Darker background for the bar track */
-    border: 2px solid #4a4a6a; /* Pixel border */
-    overflow: hidden; /* Hide overflow if bar exceeds 100% visually */
-    image-rendering: pixelated; /* Keep edges sharp */
-}
+/* Forms */
+#add-quest-form { display: flex; flex-direction: column; gap: 15px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+label { font-size: 0.9rem; color: #add8e6; }
+input[type="text"], select { font-family: 'Press Start 2P', cursive; padding: 10px; background-color: #1a1a2e; border: 2px solid #4a4a6a; color: #e0e0ff; font-size: 0.8rem; outline: none; }
+input[type="text"]:focus, select:focus { border-color: #f0a500; }
 
-#xp-bar {
-    height: 100%;
-    width: 0%; /* Initial width, JS will update this */
-    background-color: #32cd32; /* Bright Pixelated Green for the bar fill */
-    transition: width 0.5s ease-in-out; /* Smooth transition on XP gain */
-    image-rendering: pixelated; /* Keep edges sharp */
-}
-
-#xp-text {
-    font-size: 0.8rem; /* Smaller text for XP details */
-    color: #add8e6; /* Light Blue */
-}
-
-/* Main Content Sections within Tracker View */
-#tracker-view main {
-    background-color: #2a2a4e; /* Slightly lighter panel background */
-    padding: 25px;
-    border: 3px solid #4a4a6a; /* Thicker pixel border */
-    box-shadow: 5px 5px 0px #0f0f1a; /* Pixelated drop shadow */
-}
-
-section:not(#character-manager) { /* Apply only to sections within main */
-    margin-bottom: 30px; /* Space between sections */
-}
-
-/* Form Styling */
-#add-quest-form {
-    display: flex;
-    flex-direction: column; /* Stack form elements vertically */
-    gap: 15px; /* Space between form groups */
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column; /* Stack label and input */
-    gap: 5px; /* Space between label and input */
-}
-
-label {
-    font-size: 0.9rem;
-    color: #add8e6; /* Light Blue */
-}
-
-input[type="text"],
-select {
-    font-family: 'Press Start 2P', cursive; /* Ensure inputs use pixel font */
-    padding: 10px;
-    background-color: #1a1a2e; /* Dark background for inputs */
-    border: 2px solid #4a4a6a; /* Pixel border */
-    color: #e0e0ff; /* Light text color */
-    font-size: 0.8rem;
-    outline: none; /* Remove default browser outline */
-}
-
-/* Style for focused inputs */
-input[type="text"]:focus,
-select:focus {
-    border-color: #f0a500; /* Highlight with gold border on focus */
-}
-
-/* Pixel Button Style */
-.pixel-button {
-    font-family: 'Press Start 2P', cursive; /* Pixel font for buttons */
-    background-color: #f0a500; /* Gold button background */
-    color: #1a1a2e; /* Dark text on button */
-    border: 2px solid #4a4a6a; /* Pixel border */
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block; /* Proper button behavior */
-    box-shadow: 3px 3px 0px #4a4a6a; /* Pixel shadow effect */
-    transition: all 0.1s ease-in-out; /* Quick transition for interaction */
-    margin-top: 10px; /* Spacing for the main 'Add Quest' button */
-    pointer-events: auto; /* Ensure buttons are generally clickable */
-}
-
-/* Button hover effect */
-.pixel-button:hover {
-    background-color: #ffc107; /* Lighter gold on hover */
-    box-shadow: 1px 1px 0px #4a4a6a; /* Reduce shadow */
-    transform: translate(2px, 2px); /* Simulate button press */
-}
-
-/* Button active (pressed) effect */
-.pixel-button:active {
-    box-shadow: none; /* Remove shadow */
-    transform: translate(3px, 3px); /* Deeper press effect */
-}
-
-/* Danger button style (for reset/delete) */
-.pixel-button.danger {
-    background-color: #d9534f; /* Red color */
-    color: #fff; /* White text */
-    box-shadow: 3px 3px 0px #a94442; /* Darker red shadow */
-}
-
-.pixel-button.danger:hover {
-    background-color: #c9302c; /* Darker red on hover */
-     box-shadow: 1px 1px 0px #a94442;
-    transform: translate(2px, 2px);
-}
-
-.pixel-button.danger:active {
-     box-shadow: none;
-    transform: translate(3px, 3px);
-}
+/* Buttons */
+.pixel-button { font-family: 'Press Start 2P', cursive; background-color: #f0a500; color: #1a1a2e; border: 2px solid #4a4a6a; padding: 10px 15px; font-size: 0.9rem; cursor: pointer; text-align: center; text-decoration: none; display: inline-block; box-shadow: 3px 3px 0px #4a4a6a; transition: all 0.1s ease-in-out; margin-top: 10px; pointer-events: auto; }
+.pixel-button:hover { background-color: #ffc107; box-shadow: 1px 1px 0px #4a4a6a; transform: translate(2px, 2px); }
+.pixel-button:active { box-shadow: none; transform: translate(3px, 3px); }
+.pixel-button.small { padding: 8px 12px; font-size: 0.8rem; margin-top: 0; align-self: flex-end; }
+.pixel-button.danger { background-color: #d9534f; color: #fff; box-shadow: 3px 3px 0px #a94442; }
+.pixel-button.danger:hover { background-color: #c9302c; box-shadow: 1px 1px 0px #a94442; transform: translate(2px, 2px); }
+.pixel-button.danger:active { box-shadow: none; transform: translate(3px, 3px); }
+/* *** New Edit Button Style *** */
+.pixel-button.edit { background-color: #5bc0de; /* Light blue */ color: #1a1a2e; box-shadow: 3px 3px 0px #46b8da; }
+.pixel-button.edit:hover { background-color: #31b0d5; box-shadow: 1px 1px 0px #46b8da; transform: translate(2px, 2px); }
+.pixel-button.edit:active { box-shadow: none; transform: translate(3px, 3px); }
 
 
-/* Quest Lists Styling */
-ul {
-    list-style: none; /* Remove default bullet points */
-    padding: 0;
-    margin-top: 15px; /* Space above the list */
-}
+/* Quest Lists */
+ul { list-style: none; padding: 0; margin-top: 15px; }
+li { background-color: #1a1a2e; border: 2px solid #4a4a6a; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; transition: background-color 0.3s ease, box-shadow 0.6s ease-out; }
+li.completed-quest { background-color: #3a3a5a; color: #8888aa; }
 
-li {
-    background-color: #1a1a2e; /* Dark background for list items */
-    border: 2px solid #4a4a6a; /* Pixel border */
-    padding: 12px;
-    margin-bottom: 10px; /* Space between list items */
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space out content and button */
-    align-items: center; /* Vertically align items */
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-    gap: 10px; /* Space between quest details and button */
-    transition: background-color 0.3s ease, box-shadow 0.6s ease-out; /* Added transition for sparkle */
-}
+.quest-details { flex-grow: 1; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; } /* Use flex for inline edit */
+.quest-name { font-size: 0.9rem; color: #e0e0ff; }
+.quest-difficulty { font-size: 0.75rem; color: #add8e6; opacity: 0.8; }
+.completed-quest .quest-name, .completed-quest .quest-difficulty { color: #8888aa; text-decoration: line-through; }
 
-/* Style for completed quest list items */
-li.completed-quest {
-    background-color: #3a3a5a; /* Slightly different background */
-    color: #8888aa; /* Dimmer text color */
-}
-
-.quest-details {
-    flex-grow: 1; /* Allow quest details to take available space */
-}
-
-.quest-name {
-    font-size: 0.9rem;
-    color: #e0e0ff; /* Ensure name color is consistent */
-}
-
-.quest-difficulty {
-    font-size: 0.75rem;
-    color: #add8e6; /* Light blue for difficulty */
-    margin-left: 10px; /* Space between name and difficulty */
-    opacity: 0.8; /* Slightly less prominent */
-}
-
-/* Style text within completed quests */
-.completed-quest .quest-name,
-.completed-quest .quest-difficulty {
-    color: #8888aa; /* Dimmer text */
-    text-decoration: line-through; /* Strike through completed quests */
-}
-
-/* Specific styling for the 'Complete' button inside list items */
-li .pixel-button {
-    font-size: 0.75rem; /* Smaller font size */
-    padding: 6px 10px; /* Smaller padding */
-    margin-top: 0; /* Reset margin */
-    background-color: #32cd32; /* Green color for complete button */
-    color: #1a1a2e; /* Dark text */
-    box-shadow: 2px 2px 0px #1a1a2e; /* Smaller shadow */
-}
-
-/* Hover effect for 'Complete' button */
-li .pixel-button:hover {
-    background-color: #90ee90; /* Lighter green */
-    box-shadow: 1px 1px 0px #1a1a2e;
-    transform: translate(1px, 1px);
-}
-/* Active effect for 'Complete' button */
-li .pixel-button:active {
-    box-shadow: none;
-    transform: translate(2px, 2px);
-}
-
-/* Reset Section Styling */
-#reset-section {
-    text-align: center; /* Center the reset button */
-    margin-top: 40px; /* Add some space above it */
-    padding-top: 20px;
-    border-top: 2px dashed #4a4a6a; /* Separator line */
-}
-
-
-/* Level Up Notification Styling */
-#level-up-notification {
-    position: fixed; /* Keep it fixed on screen */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.5); /* Center and start small */
-    background-color: #f0a500; /* Gold background */
-    color: #1a1a2e; /* Dark text */
-    padding: 30px 50px; /* Generous padding */
-    border: 4px solid #fff; /* White pixel border */
-    box-shadow: 0 0 0 5px #f0a500, 0 0 20px 10px rgba(255, 223, 0, 0.7); /* Outer glow effect */
-    font-size: 2.5rem; /* Large text */
-    text-align: center;
-    z-index: 1000; /* Ensure it's on top */
-    opacity: 0; /* Start hidden */
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Smooth fade and scale */
-    pointer-events: none; /* Don't block clicks when hidden/fading */
-}
-
-/* Class to show the level up notification */
-#level-up-notification.show {
-    opacity: 1; /* Fade in */
-    transform: translate(-50%, -50%) scale(1); /* Scale up to full size */
-}
-
-/* Modal Styling (for Reset/Delete Confirmation) */
-.modal {
-    position: fixed; /* Sit on top of the page content */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.6); /* Black w/ opacity - background dim */
-    z-index: 1001; /* Higher than level up */
-    display: flex; /* Use flexbox for centering */
-    align-items: center; /* Vertical center */
-    justify-content: center; /* Horizontal center */
-    opacity: 0; /* Start hidden */
-    transition: opacity 0.3s ease-out;
-    pointer-events: none; /* Don't interact when hidden */
-}
-
-.modal:not(.hidden) {
-    opacity: 1; /* Fade in when not hidden */
-    pointer-events: auto; /* Allow interaction when visible */
-}
-
-.modal-content {
+/* *** Inline Edit Input Style *** */
+.edit-quest-input {
     font-family: 'Press Start 2P', cursive;
-    background-color: #2a2a4e; /* Match main panel background */
-    margin: auto; /* superfluos with flex, but good fallback */
-    padding: 30px;
-    border: 3px solid #4a4a6a;
-    box-shadow: 5px 5px 0px #0f0f1a;
-    width: 80%; /* Responsive width */
-    max-width: 500px; /* Max width */
-    text-align: center;
-    color: #e0e0ff;
-    font-size: 0.9rem;
-    line-height: 1.8;
-}
-
-.modal-content p {
-    margin-bottom: 25px; /* Space between text and buttons */
-}
-
-.modal-buttons {
-    display: flex;
-    justify-content: center; /* Center buttons */
-    gap: 20px; /* Space between buttons */
-    flex-wrap: wrap; /* Wrap buttons on smaller screens */
-}
-
-/* New Journey Notification Styling */
-#new-journey-notification {
-    position: fixed;
-    bottom: 20px; /* Position at the bottom */
-    left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-    background-color: #32cd32; /* Green background */
+    padding: 6px; /* Smaller padding */
+    background-color: #e0e0ff; /* Light background */
+    border: 2px solid #f0a500; /* Highlight border */
     color: #1a1a2e; /* Dark text */
-    padding: 15px 25px;
-    border: 3px solid #fff; /* White border */
-    box-shadow: 0 0 10px rgba(50, 205, 50, 0.7); /* Green glow */
-    font-size: 1rem;
-    text-align: center;
-    z-index: 999; /* Below modals */
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-    pointer-events: none;
+    font-size: 0.8rem;
+    outline: none;
+    flex-grow: 1; /* Allow input to take space */
+    min-width: 100px;
 }
 
-#new-journey-notification.show {
-    opacity: 1;
+/* Container for quest action buttons */
+.quest-actions {
+    display: flex;
+    gap: 8px; /* Space between action buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking too much */
 }
+/* Specific styling for buttons inside list items */
+.quest-actions .pixel-button { font-size: 0.75rem; padding: 6px 10px; margin-top: 0; }
+.quest-actions .pixel-button.complete { background-color: #32cd32; color: #1a1a2e; box-shadow: 2px 2px 0px #1a1a2e; }
+.quest-actions .pixel-button.complete:hover { background-color: #90ee90; box-shadow: 1px 1px 0px #1a1a2e; transform: translate(1px, 1px); }
+.quest-actions .pixel-button.complete:active { box-shadow: none; transform: translate(2px, 2px); }
+/* Adjust edit/delete button shadows within list */
+.quest-actions .pixel-button.edit { box-shadow: 2px 2px 0px #2a2a4e; }
+.quest-actions .pixel-button.edit:hover { box-shadow: 1px 1px 0px #2a2a4e; transform: translate(1px, 1px); }
+.quest-actions .pixel-button.edit:active { box-shadow: none; transform: translate(2px, 2px); }
+.quest-actions .pixel-button.danger { box-shadow: 2px 2px 0px #5a3a3a; }
+.quest-actions .pixel-button.danger:hover { box-shadow: 1px 1px 0px #5a3a3a; transform: translate(1px, 1px); }
+.quest-actions .pixel-button.danger:active { box-shadow: none; transform: translate(2px, 2px); }
 
 
-/* Animation Keyframes for quest completion sparkle */
-@keyframes sparkle {
-    0% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #32cd32, 3px 3px 0px #0f0f1a; } /* Keep original shadow */
-    50% { box-shadow: 0 0 10px #fff, 0 0 20px #32cd32, 0 0 25px #90ee90, 3px 3px 0px #0f0f1a; }
-    100% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #32cd32, 3px 3px 0px #0f0f1a; }
-}
+/* Reset Section */
+#reset-section { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px dashed #4a4a6a; }
 
-/* Class to apply the sparkle animation to list items */
-li.quest-complete-sparkle {
-    animation: sparkle 0.6s ease-out;
-    border-color: #f0a500; /* Highlight border during sparkle */
-}
+/* Notifications & Modals */
+#level-up-notification { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5); background-color: #f0a500; color: #1a1a2e; padding: 30px 50px; border: 4px solid #fff; box-shadow: 0 0 0 5px #f0a500, 0 0 20px 10px rgba(255, 223, 0, 0.7); font-size: 2.5rem; text-align: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease-out, transform 0.3s ease-out; pointer-events: none; }
+#level-up-notification.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.modal { position: fixed; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); z-index: 1001; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease-out; pointer-events: none; }
+.modal:not(.hidden) { opacity: 1; pointer-events: auto; }
+.modal-content { font-family: 'Press Start 2P', cursive; background-color: #2a2a4e; margin: auto; padding: 30px; border: 3px solid #4a4a6a; box-shadow: 5px 5px 0px #0f0f1a; width: 80%; max-width: 500px; text-align: center; color: #e0e0ff; font-size: 0.9rem; line-height: 1.8; }
+.modal-content p { margin-bottom: 25px; }
+.modal-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+#new-journey-notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #32cd32; color: #1a1a2e; padding: 15px 25px; border: 3px solid #fff; box-shadow: 0 0 10px rgba(50, 205, 50, 0.7); font-size: 1rem; text-align: center; z-index: 999; opacity: 0; transition: opacity 0.5s ease-out; pointer-events: none; }
+#new-journey-notification.show { opacity: 1; }
 
+/* Sparkle Animation */
+@keyframes sparkle { 0% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #32cd32, 3px 3px 0px #0f0f1a; } 50% { box-shadow: 0 0 10px #fff, 0 0 20px #32cd32, 0 0 25px #90ee90, 3px 3px 0px #0f0f1a; } 100% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #32cd32, 3px 3px 0px #0f0f1a; } }
+li.quest-complete-sparkle { animation: sparkle 0.6s ease-out; border-color: #f0a500; }
 
-/* Responsive adjustments for smaller screens */
+/* Responsive */
 @media (max-width: 600px) {
-    h1 {
-        font-size: 1.5rem; /* Slightly smaller title */
-        padding-top: 50px; /* More padding for smaller back button */
-    }
-    h2 {
-        font-size: 1rem; /* Smaller section titles */
-    }
-    .back-button {
-        padding: 6px 10px;
-        font-size: 0.7rem;
-        top: 8px;
-        left: 8px;
-    }
-    .character-controls {
-        flex-direction: column; /* Stack controls vertically */
-        align-items: stretch; /* Stretch items to fill width */
-    }
-     .character-controls .pixel-button {
-        width: 100%; /* Make buttons full width */
-    }
-
-    /* Adjust list item layout on small screens */
-    li {
-        flex-direction: column; /* Stack elements vertically */
-        align-items: flex-start; /* Align items to the start */
-    }
-    /* Move complete button to the end */
-    li .pixel-button {
-        align-self: flex-end;
-    }
-    /* Make level up notification smaller */
-    #level-up-notification {
-        font-size: 1.8rem;
-        padding: 20px 30px;
-    }
-    /* Modal adjustments */
-    .modal-content {
-        padding: 20px;
-        font-size: 0.8rem;
-    }
-    /* New Journey Notification adjustments */
-    #new-journey-notification {
-        width: 90%;
-        font-size: 0.9rem;
-        bottom: 10px;
-    }
+    h1 { font-size: 1.5rem; padding-top: 50px; }
+    h2 { font-size: 1rem; }
+    .back-button { padding: 6px 10px; font-size: 0.7rem; top: 8px; left: 8px; }
+    .character-controls { flex-direction: column; align-items: stretch; }
+    .character-controls .pixel-button { width: 100%; }
+    li { flex-direction: column; align-items: stretch; } /* Adjust list item stacking */
+    .quest-details { justify-content: space-between; width: 100%; } /* Allow details to span width */
+    .quest-actions { align-self: flex-end; margin-top: 10px; } /* Move actions to bottom right */
+    #level-up-notification { font-size: 1.8rem; padding: 20px 30px; }
+    .modal-content { padding: 20px; font-size: 0.8rem; }
+    #new-journey-notification { width: 90%; font-size: 0.9rem; bottom: 10px; }
 }
